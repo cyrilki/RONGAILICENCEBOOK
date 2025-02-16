@@ -1,0 +1,27 @@
+blinker==1.8.2
+click==8.1.7
+colorama==0.4.6
+dlib @ file:///C:/Users/Administrator/Desktop/People%20Counter/People%20Counter/dlib-19.24.99-cp312-cp312-win_amd64.whl#sha256=20c62e606ca4c9961305f7be3d03990380d3e6c17f8d27798996e97a73271862
+et-xmlfile==1.1.0
+face-recognition==1.3.0
+face_recognition_models @ file:///C:/Users/Administrator/Desktop/face_recognition_models-master
+Flask==3.0.3
+Flask-Cors==5.0.0
+gunicorn==23.0.0
+itsdangerous==2.2.0
+Jinja2==3.1.4
+MarkupSafe==3.0.2
+numpy==1.26.4
+opencv-python==4.10.0.84
+openpyxl==3.1.5
+packaging==24.2
+pandas==2.2.3
+pillow==10.4.0
+PyQt5==5.15.11
+PyQt5-Qt5==5.15.2
+PyQt5_sip==12.15.0
+python-dateutil==2.9.0.post0
+pytz==2024.2
+six==1.16.0
+tzdata==2024.2
+Werkzeug==3.0.4
