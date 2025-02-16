@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Search License - License Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Search License</h2>
+    <form method="POST">
+        <label for="search_term">Search by License No, Owner, or Business:</label>
+        <input type="text" id="search_term" name="search_term" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h3>Search Results:</h3>
+        <table>
+            <tr>
+                <th>Entry No</th>
+                <th>License No</th>
+                <th>Owner</th>
+                <th>Phone</th>
+                <th>Business</th>
+                <th>Location</th>
+                <th>Registered</th>
+                <th>Renewed</th>
+                <th>Status</th>
+                <th>Year</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row.entry_number }}</td>
+                <td>{{ row.license_number }}</td>
+                <td>{{ row.owner_name }}</td>
+                <td>{{ row.owner_phone }}</td>
+                <td>{{ row.business_name }}</td>
+                <td>{{ row.business_location }}</td>
+                <td>{{ row.date_registered }}</td>
+                <td>{{ row.date_renewed }}</td>
+                <td>{{ row.status }}</td>
+                <td>{{ row.year }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

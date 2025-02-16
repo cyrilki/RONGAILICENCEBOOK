@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Add License - License Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add New License</h1>
+    <form action="{{ url_for('add_license') }}" method="POST">
+        <label for="entry_number">Entry Number:</label>
+        <input type="number" id="entry_number" name="entry_number" required readonly value="{{ entry_number }}">
+
+        <label for="license_number">License Number:</label>
+        <input type="text" id="license_number" name="license_number" maxlength="15" pattern="[A-Z0-9]+" required>
+
+        <label for="owner_name">Owner Name (CAPS, max 50 chars):</label>
+        <input type="text" id="owner_name" name="owner_name" maxlength="50" pattern="[A-Z\s]+" required>
+
+        <label for="owner_phone">Owner Phone (07xxxxxxxx):</label>
+        <input type="text" id="owner_phone" name="owner_phone" pattern="07[0-9]{8}" required>
+
+        <label for="business_name">Business Name (CAPS, max 50 chars):</label>
+        <input type="text" id="business_name" name="business_name" maxlength="50" pattern="[A-Z\s]+" required>
+
+        <label for="business_location">Business Location:</label>
+        <input type="text" id="business_location" name="business_location">
+
+        <label for="date_registered">Date Registered:</label>
+        <input type="date" id="date_registered" name="date_registered" required>
+
+        <label for="date_renewed">Date Renewed (Optional):</label>
+        <input type="date" id="date_renewed" name="date_renewed">
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Active">Active</option>
+            <option value="Expired">Expired</option>
+            <option value="Suspended">Suspended</option>
+        </select>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required readonly value="{{ year }}">
+
+        <button type="submit">Add License</button>
+    </form>
+
+    <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+</div>
+{% endblock %}

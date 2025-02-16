@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}License Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='gov_logo.png') }}" alt="Government Logo" class="gov-logo">
+            <img src="{{ url_for('static', filename='county_logo.png') }}" alt="County Logo" class="county-logo">
+        </div>
+        <h1>COUNTY GOVERNMENT OF NAKURU</h1>
+        <h2>RONGAI SUB COUNTY</h2>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('add_license') }}">Add License</a>
+        <a href="{{ url_for('search_license') }}">Search License</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main Content -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 License Management System</p>
+    </footer>
+</body>
+</html>
