@@ -1,72 +1,113 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    background-color: #FFFACD;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #333; /* Darker text color for better contrast */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
 /* Header Styles */
 header {
-    background: #004080;
+    background: #FFFF99;
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo Container */
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* Space between logos */
-}
-
-/* Government Logo */
+/* Government Logo (Top Center) */
 .gov-logo {
-    width:600px;
-height:300px;
+    width: 120px; /* Adjust size as needed */
+    height: 120px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the logo round */
+    border: 5px solid gold; /* Adds a golden border */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    margin: 0 auto 20px; /* Center the logo and add space below */
+    display: block; /* Ensure it behaves as a block element */
 }
 
-/* County Logo */
-.county-logo {
-    width:500px;
-height:300px;
+/* Titles Container */
+.titles {
+    margin-top: 20px; /* Space below the government logo */
 }
 
-/* Header Titles */
-header h1 {
+/* Main Title (h1) */
+.titles h1 {
     font-size: 32px;
-    color: white;
+    color: black;
     text-transform: uppercase;
-    margin: 10px 0;
+    margin: 0;
 }
 
-header h2 {
+/* Subtitle (h2) */
+.titles h2 {
+    font-size: 24px;
+    color: black;
+    text-transform: uppercase;
+    margin: 5px 0 20px 0; /* Space below the subtitle */
+}
+
+/* County Logo (After Titles) */
+.county-logo {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the logo round */
+    border: 5px solid gold; /* Adds a golden border */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    margin: 0 auto; /* Center the logo horizontally */
+    display: block; /* Ensure it behaves as a block element */
+}
+
+/* Menu Icon (Hamburger) */
+.menu-icon {
+    position: fixed; /* Fixed position at the top-left */
+    top: 20px;
+    left: 20px;
     font-size: 24px;
     color: white;
-    text-transform: uppercase;
-    margin: 5px 0;
+    cursor: pointer;
+    z-index: 1001; /* Ensure the icon is above the nav bar */
+    background: green; /* Add background color for visibility */
+    padding: 10px;
+    border-radius: 4px;
 }
 
 /* Navigation Styles */
 nav {
-    background: #003366;
+    background: green;
     padding: 10px;
-    text-align: center;
+    position: fixed; /* Fixed position at the top-left */
+    top: 60px; /* Position below the menu icon */
+    left: -250px; /* Hide the nav bar by default */
+    width: 200px; /* Width of the nav bar */
+    height: auto; /* Adjust height based on content */
+    transition: left 0.3s ease; /* Smooth transition for sliding effect */
+    z-index: 1000; /* Ensure the nav bar is above other content */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
 }
 
+/* Show the nav bar when active */
+nav.active {
+    left: 0;
+}
+
+/* Navigation Links */
 nav a {
+    display: block; /* Display links vertically */
     color: white;
     text-decoration: none;
-    margin: 0 15px;
+    margin: 10px 0;
     font-weight: bold;
     font-size: 16px;
+    padding: 10px 15px;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: #004080; /* Darker green on hover */
+    border-radius: 4px;
 }
 
 /* Container Styles */
@@ -74,14 +115,39 @@ nav a:hover {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background: white;
+    background: #FFFDD0;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Allow the container to grow and push the footer down */
 }
 
-h1, h2 {
-    color: #004080;
-    text-align: center;
+/* System Description Styles */
+.system-description {
+    background: #ffffff; /* White background for the paragraph */
+    padding: 20px; /* Add padding inside the paragraph box */
+    margin: 20px 0; /* Add margin outside the paragraph box */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    line-height: 1.6; /* Improve readability with more line spacing */
+    color: #333; /* Darker text color for better contrast */
+}
+
+.system-description p {
+    margin: 10px 0; /* Add space between paragraphs */
+}
+
+.system-description strong {
+    color: #004080; /* Highlight strong text with a blue color */
+}
+
+/* Paragraph Styles */
+p {
+    ; /* Make paragraphs bold */
+    color: black; /* Set text color to black */
+    font-size: 20px; /* Set font size to 14px */
+    text-align: center; /* Center-align paragraphs */
+    margin: 10px 0; /* Add some margin for spacing */
 }
 
 /* Form Styles */
@@ -167,13 +233,129 @@ table tr:hover {
 
 /* Footer Styles */
 footer {
-    background: #003366;
-    color: white;
+    background: #FAFAD2; /* Light yellow background */
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 10px; /* Increased padding for better spacing */
+    margin-top: 20px; /* Add space above the footer */
+    border-radius: 8px; /* Rounded corners for the footer */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 footer p {
     margin: 0;
+    font-size: 18px; /* Set font size to 18px */
+    font-weight: bold; /* Make text bold */
+    color: red; /* Set text color to red */
+}
+
+/* Login Container */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #FFFDD0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 24px;
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    font-weight: bold;
+    color: #004080;
+    margin-bottom: 5px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background: #004080;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-container button:hover {
+    background: #003366;
+}
+
+.login-options {
+    margin-top: 20px;
+}
+
+.login-options p {
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.login-options a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background: #004080;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.login-options a:hover {
+    background: #003366;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Adjust header padding for mobile */
+    header {
+        padding: 10px;
+    }
+
+    /* Adjust logo sizes for mobile */
+    .gov-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .county-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* Adjust titles for mobile */
+    .titles h1 {
+        font-size: 24px;
+    }
+
+    .titles h2 {
+        font-size: 18px;
+    }
+
+    /* Adjust container padding for mobile */
+    .container {
+        padding: 15px;
+    }
+
+    /* Adjust login container for mobile */
+    .login-container {
+        padding: 15px;
+    }
 }

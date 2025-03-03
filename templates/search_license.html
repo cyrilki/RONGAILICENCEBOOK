@@ -5,42 +5,81 @@
 {% block content %}
 <div class="container">
     <h2>Search License</h2>
-    <form method="POST">
-        <label for="search_term">Search by License No, Owner, or Business:</label>
+    <form id="search-form" method="POST" action="/search">
+        <label for="search_term">Search by Business Name or ID:</label>
         <input type="text" id="search_term" name="search_term" required>
         <button type="submit">Search</button>
     </form>
 
-    {% if results %}
-        <h3>Search Results:</h3>
-        <table>
-            <tr>
-                <th>Entry No</th>
-                <th>License No</th>
-                <th>Owner</th>
-                <th>Phone</th>
-                <th>Business</th>
-                <th>Location</th>
-                <th>Registered</th>
-                <th>Renewed</th>
-                <th>Status</th>
-                <th>Year</th>
-            </tr>
-            {% for row in results %}
-            <tr>
-                <td>{{ row.entry_number }}</td>
-                <td>{{ row.license_number }}</td>
-                <td>{{ row.owner_name }}</td>
-                <td>{{ row.owner_phone }}</td>
-                <td>{{ row.business_name }}</td>
-                <td>{{ row.business_location }}</td>
-                <td>{{ row.date_registered }}</td>
-                <td>{{ row.date_renewed }}</td>
-                <td>{{ row.status }}</td>
-                <td>{{ row.year }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% endif %}
+    <div id="search-results">
+        <!-- Results will be dynamically inserted here -->
+    </div>
+
+    <script>
+        document.getElementById("search_term").addEventListener("input", function() {
+            const searchTerm = this.value.trim();
+            if (searchTerm.length === 0) {
+                document.getElementById("search-results").innerHTML = "";
+                return;
+            }
+
+            // Send AJAX request to the server
+            fetch("/live_search", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `search_term=${encodeURIComponent(searchTerm)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsContainer = document.getElementById("search-results");
+                resultsContainer.innerHTML = "";
+
+                if (data.length === 0) {
+                    resultsContainer.innerHTML = "<p>No matching licenses found.</p>";
+                    return;
+                }
+
+                const table = document.createElement("table");
+                table.innerHTML = `
+                    <tr>
+                        <th>Entry No</th>
+                        <th>Business ID</th>
+                        <th>Business Name</th>
+                        <th>Phone</th>
+                        <th>Activity</th>
+                        <th>Location</th>
+                        <th>Registered</th>
+                        <th>Renewed</th>
+                        <th>Status</th>
+                        <th>Year</th>
+                    </tr>
+                `;
+
+                data.forEach(row => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${row.entry_number}</td>
+                        <td>${row.Business_ID}</td>
+                        <td>${row.Business_name}</td>
+                        <td>${row.owner_phone}</td>
+                        <td>${row.Activity}</td>
+                        <td>${row.business_location}</td>
+                        <td>${row.date_registered}</td>
+                        <td>${row.date_renewed || "-"}</td>
+                        <td>${row.status}</td>
+                        <td>${row.year}</td>
+                    `;
+                    table.appendChild(tr);
+                });
+
+                resultsContainer.appendChild(table);
+            })
+            .catch(error => {
+                console.error("Error fetching search results:", error);
+            });
+        });
+    </script>
 </div>
 {% endblock %}

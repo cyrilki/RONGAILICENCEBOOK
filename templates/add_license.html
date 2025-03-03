@@ -9,17 +9,17 @@
         <label for="entry_number">Entry Number:</label>
         <input type="number" id="entry_number" name="entry_number" required readonly value="{{ entry_number }}">
 
-        <label for="license_number">License Number:</label>
-        <input type="text" id="license_number" name="license_number" maxlength="15" pattern="[A-Z0-9]+" required>
+        <label for="Business_name">Business Name (CAPS):</label>
+        <input type="text" id="Business_name" name="Business_name" maxlength="50" pattern="[A-Z\s]+" required>
 
-        <label for="owner_name">Owner Name (CAPS, max 50 chars):</label>
-        <input type="text" id="owner_name" name="owner_name" maxlength="50" pattern="[A-Z\s]+" required>
+        <label for="Business_ID">Business ID:</label>
+        <input type="text" id="Business_ID" name="Business_ID" maxlength="15" pattern="[A-Z0-9]+" required>
 
-        <label for="owner_phone">Owner Phone (07xxxxxxxx):</label>
-        <input type="text" id="owner_phone" name="owner_phone" pattern="07[0-9]{8}" required>
+        <label for="owner_phone">Owner Phone:</label>
+        <input type="text" id="owner_phone" name="owner_phone" pattern="[0-9]{10}" required>
 
-        <label for="business_name">Business Name (CAPS, max 50 chars):</label>
-        <input type="text" id="business_name" name="business_name" maxlength="50" pattern="[A-Z\s]+" required>
+        <label for="Activity">Activity (CAPS):</label>
+        <input type="text" id="Activity" name="Activity" maxlength="50" pattern="[A-Z\s]+" required>
 
         <label for="business_location">Business Location:</label>
         <input type="text" id="business_location" name="business_location">

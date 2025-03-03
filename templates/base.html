@@ -9,19 +9,36 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo-container">
-            <img src="{{ url_for('static', filename='gov_logo.png') }}" alt="Government Logo" class="gov-logo">
-            <img src="{{ url_for('static', filename='county_logo.png') }}" alt="County Logo" class="county-logo">
+        <!-- Government Logo (Top Center) -->
+        <img src="{{ url_for('static', filename='gov_logo.png') }}" alt="Government Logo" class="gov-logo">
+
+        <!-- Titles -->
+        <div class="titles">
+            <h1>COUNTY GOVERNMENT OF NAKURU</h1>
+            <h2>RONGAI SUB-COUNTY</h2>
         </div>
-        <h1>COUNTY GOVERNMENT OF NAKURU</h1>
-        <h2>RONGAI SUB COUNTY</h2>
+
+        <!-- County Logo (After Titles) -->
+        <img src="{{ url_for('static', filename='county_logo.png') }}" alt="County Logo" class="county-logo">
     </header>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- Menu Icon (Hamburger) -->
+    <div class="menu-icon" onclick="toggleNav()">☰</div>
+
+    <!-- Navigation (Hidden by Default) -->
+    <nav id="nav">
         <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('add_license') }}">Add License</a>
         <a href="{{ url_for('search_license') }}">Search License</a>
+
+        <!-- Admin-Specific Links -->
+        {% if session.get("is_admin", False) %}
+            <a href="{{ url_for('add_user') }}">Add User</a>
+            <a href="{{ url_for('view_users') }}">View Users</a>
+            <a href="{{ url_for('delete_license') }}">Delete License</a>
+        {% endif %}
+
+        <!-- Logout Link -->
         <a href="{{ url_for('logout') }}">Logout</a>
     </nav>
 
@@ -43,5 +60,13 @@
     <footer>
         <p>&copy; 2025 License Management System</p>
     </footer>
+
+    <!-- JavaScript for Toggling Navigation -->
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById("nav");
+            nav.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>

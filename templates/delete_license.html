@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Delete License - License Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Delete License</h2>
+    <p>Select a license to delete:</p>
+
+    <!-- Display all licenses in a table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Entry No</th>
+                <th>Business Name</th>
+                <th>Business ID</th>
+                <th>Phone</th>
+                <th>Activity</th>
+                <th>Location</th>
+                <th>Registered</th>
+                <th>Renewed</th>
+                <th>Status</th>
+                <th>Year</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for license in licenses %}
+            <tr>
+                <td>{{ license.entry_number }}</td>
+                <td>{{ license.Business_name }}</td>
+                <td>{{ license.Business_ID }}</td>
+                <td>{{ license.owner_phone }}</td>
+                <td>{{ license.Activity }}</td>
+                <td>{{ license.business_location }}</td>
+                <td>{{ license.date_registered }}</td>
+                <td>{{ license.date_renewed or "-" }}</td>
+                <td>{{ license.status }}</td>
+                <td>{{ license.year }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete_license') }}" onsubmit="return confirmDelete('{{ license.Business_name }}', {{ license.entry_number }}, {{ license.year }});">
+                        <input type="hidden" name="entry_number" value="{{ license.entry_number }}">
+                        <input type="hidden" name="year" value="{{ license.year }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- JavaScript for Confirmation Dialog -->
+<script>
+    function confirmDelete(businessName, entryNumber, year) {
+        return confirm(`Do you want to delete the license for ${businessName} (Entry No: ${entryNumber}, Year: ${year})?`);
+    }
+</script>
+
+<style>
+    .delete-button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .delete-button:hover {
+        background-color: #cc0000;
+    }
+</style>
+{% endblock %}

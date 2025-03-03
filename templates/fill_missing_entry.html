@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Fill Missing Entry - License Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Fill Missing Entry</h2>
+    <p>The license entry number <strong>{{ entry_number }}</strong> for the year <strong>{{ year }}</strong> is missing. Please fill in the details below:</p>
+
+    <form method="POST">
+        <input type="hidden" name="entry_number" value="{{ entry_number }}">
+        <input type="hidden" name="year" value="{{ year }}">
+
+        <label for="Business_ID">Business ID:</label>
+        <input type="text" id="Business_ID" name="Business_ID" required>
+
+        <label for="Business_name">Business Name:</label>
+        <input type="text" id="Business_name" name="Business_name" required>
+
+        <label for="owner_phone">Owner Phone:</label>
+        <input type="text" id="owner_phone" name="owner_phone" required>
+
+        <label for="Activity">Activity:</label>
+        <input type="text" id="Activity" name="Activity" required>
+
+        <label for="business_location">Business Location:</label>
+        <input type="text" id="business_location" name="business_location">
+
+        <label for="date_registered">Date Registered:</label>
+        <input type="date" id="date_registered" name="date_registered" required>
+
+        <label for="date_renewed">Date Renewed:</label>
+        <input type="date" id="date_renewed" name="date_renewed">
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

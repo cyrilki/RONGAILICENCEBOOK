@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}View Users - License Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>View Users</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
